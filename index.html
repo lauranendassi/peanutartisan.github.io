@@ -4,90 +4,138 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peanut Artisan Butter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #faf6f0; color: #333; }
-    header { background: #8B5E3C; color: white; padding: 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 2rem; }
-    nav { margin-top: 10px; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    section { padding: 40px 20px; max-width: 900px; margin: auto; }
-    h2 { color: #8B5E3C; border-bottom: 2px solid #8B5E3C; padding-bottom: 5px; }
+    /* --- Reset & global --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: #faf6f0; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
 
-    .products { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .product { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; width: 250px; text-align: center; box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-    .product:hover { transform: scale(1.05); }
-    .product img { max-width: 100%; border-radius: 8px; }
+    /* --- Header --- */
+    header { background: #8B5E3C; color: #fff; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+    header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+    header h1 { font-size: 2rem; }
+    nav a { margin: 0 15px; font-weight: bold; transition: 0.3s; }
+    nav a:hover { color: #ffd700; }
 
-    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    /* --- Hero Section --- */
+    .hero { background: url('https://via.placeholder.com/1600x600.png?text=Peanut+Artisan+Butter') center/cover no-repeat; height: 80vh; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; }
+    .hero h2 { font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
+    .hero p { font-size: 1.2rem; max-width: 600px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+    .btn { background: #ffd700; color: #8B5E3C; padding: 12px 25px; font-weight: bold; border-radius: 5px; transition: 0.3s; display: inline-block; margin-top: 20px; }
+    .btn:hover { background: #e6c200; }
+
+    /* --- Section titles --- */
+    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+    section h2 { color: #8B5E3C; font-size: 2rem; margin-bottom: 20px; border-bottom: 3px solid #8B5E3C; display: inline-block; padding-bottom: 5px; }
+
+    /* --- Products --- */
+    .products { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .product-card { background: #fff; border-radius: 10px; overflow: hidden; width: 280px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .product-card:hover { transform: scale(1.05); }
+    .product-card img { width: 100%; }
+    .product-card .info { padding: 15px; }
+    .product-card h3 { margin-bottom: 10px; }
+    .product-card p { font-weight: bold; color: #8B5E3C; }
+
+    /* --- About --- */
+    .about { display: flex; gap: 40px; flex-wrap: wrap; align-items: center; }
+    .about img { flex: 1; border-radius: 15px; max-width: 500px; }
+    .about .text { flex: 1; }
+
+    /* --- Contact / Commande --- */
+    .contact form, .order-form { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
     form label { display: block; margin-top: 15px; font-weight: bold; }
-    form input, form select, form textarea { 
-      width: 100%; padding: 12px; margin-top: 5px; 
-      border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;
-    }
-    form button { 
-      margin-top: 20px; background: #8B5E3C; color: white; 
-      padding: 15px; border: none; border-radius: 5px; 
-      cursor: pointer; font-size: 1.1rem; width: 100%;
-    }
+    form input, form select, form textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    form button { margin-top: 20px; width: 100%; background: #8B5E3C; color: #fff; padding: 15px; font-weight: bold; border-radius: 5px; cursor: pointer; }
     form button:hover { background: #6A4228; }
     #confirmation { margin-top: 15px; font-weight: bold; color: green; text-align: center; }
 
-    .qr { text-align: center; margin-top: 30px; }
-    .qr img { border: 4px solid #8B5E3C; border-radius: 8px; padding: 5px; }
+    /* --- Footer --- */
+    footer { background: #333; color: #fff; text-align: center; padding: 20px; }
 
-    footer { background: #333; color: white; text-align: center; padding: 15px; margin-top: 40px; }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; }
-      nav a { display: inline-block; margin: 5px; }
-      .product { width: 100%; }
-      form { padding: 15px; }
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .about { flex-direction: column; text-align: center; }
+      .about img { margin-bottom: 20px; }
     }
   </style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
-  <h1>🥜 Peanut Artisan Butter</h1>
-  <p>Naturel • Sain • 100% Camerounais</p>
-  <nav>
-    <a href="#produits">Produits</a>
-    <a href="#commande">Commander</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="container">
+    <h1>🥜 Peanut Artisan Butter</h1>
+    <nav>
+      <a href="#hero">Accueil</a>
+      <a href="#products">Produits</a>
+      <a href="#about">À propos</a>
+      <a href="#order">Commander</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<section id="produits">
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div>
+    <h2>Naturel • Sain • 100% Camerounais</h2>
+    <p>Découvrez nos beurres d’arachide artisanaux fabriqués avec amour et qualité premium pour toute la famille.</p>
+    <a href="#products" class="btn">Voir nos produits</a>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products">
   <h2>Nos Produits</h2>
   <div class="products">
-    <div class="product">
-      <img src="homemade-peanut-butter.jpg" alt="Pot 250g">
-      <h3>Pot 250 g</h3>
-      <p><strong>1 000 FCFA</strong></p>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200.png?text=Pot+250g" alt="Pot 250g">
+      <div class="info">
+        <h3>Pot 250 g</h3>
+        <p>2 000 FCFA</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="peanut-butter.jpg" alt="Pot 500g">
-      <h3>Pot 500 g</h3>
-      <p><strong>2 500 FCFA</strong></p>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200.png?text=Pot+500g" alt="Pot 500g">
+      <div class="info">
+        <h3>Pot 500 g</h3>
+        <p>3 500 FCFA</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="commande">
+<!-- About -->
+<section id="about">
+  <h2>À propos de nous</h2>
+  <div class="about">
+    <img src="https://via.placeholder.com/500x400.png?text=Usine+Artisanale" alt="Usine artisanale">
+    <div class="text">
+      <p>Chez Peanut Artisan Butter, nous produisons un beurre d’arachide naturel, sain et 100% camerounais. Notre engagement est de fournir un produit de qualité premium tout en soutenant les producteurs locaux.</p>
+      <p>Chaque pot est fabriqué avec soin et passion, pour garantir un goût unique et authentique à chaque bouchée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Order Form -->
+<section id="order">
   <h2>Passer une commande</h2>
-  <form id="orderForm" action="https://formspree.io/f/TON-ID-ICI" method="POST">
+  <form class="order-form" id="orderForm" action="https://formspree.io/f/xkgqwnzr" method="POST">
     <input type="hidden" name="_redirect" value="merci.html">
 
     <label for="nom">Nom complet</label>
-    <input type="text" id="nom" name="Nom du client" placeholder="Ex: Ndassi Laurane" required>
+    <input type="text" id="nom" name="Nom" placeholder="Ex: Ndassi Laurane" required>
 
     <label for="telephone">Téléphone</label>
-    <input type="tel" id="telephone" name="Téléphone" placeholder="+237 693 73 20 41" required>
+    <input type="tel" id="telephone" name="Téléphone" placeholder="+237 6XX XX XX XX" required>
 
     <label for="produit">Produit</label>
-    <select id="produit" name="Produit commandé">
-      <option value="Pot 250g">Pot 250 g - 1 000 FCFA</option>
-      <option value="Pot 500g">Pot 500 g - 2 500 FCFA</option>
+    <select id="produit" name="Produit">
+      <option value="Pot 250g">Pot 250 g - 2 000 FCFA</option>
+      <option value="Pot 500g">Pot 500 g - 3 500 FCFA</option>
     </select>
 
     <label for="quantite">Quantité</label>
@@ -100,65 +148,68 @@
     <textarea id="message" name="Message" rows="2" placeholder="Ex: Appeler avant de livrer"></textarea>
 
     <button type="submit">📦 Commander</button>
+    <p id="confirmation"></p>
   </form>
-
-  <button id="whatsappButton" style="margin-top:15px; background:#25D366; color:white; padding:12px; border:none; border-radius:5px; cursor:pointer; width:100%; font-size:1rem;">
-    💬 Confirmer ma commande sur WhatsApp
-  </button>
-
-  <p id="confirmation"></p>
 </section>
 
+<!-- Contact -->
 <section id="contact">
-  <h2>Contact</h2>
-  <p>📞 WhatsApp : <strong>+237 693732041</strong></p>
-  <p>📧 Email : <strong>contact@peanutartisan.cm</strong></p>
-  <p>📍 Ville : Dschang, Cameroun</p>
+  <h2>Contactez-nous</h2>
+  <p style="text-align:center;">📞 WhatsApp : +237 693732041 | 📧 Email : contact@peanutartisan.cm</p>
 </section>
 
-<section class="qr">
-  <h2>📲 Scannez pour commander</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lauranendassi.github.io/peanutartisan.github.io/" alt="QR Code Peanut Artisan">
-  <p>Scannez ce QR code pour accéder au site et passer commande.</p>
-</section>
-
+<!-- Footer -->
 <footer>
   <p>© 2025 Peanut Artisan Butter – Tous droits réservés</p>
 </footer>
 
+<!-- Script WhatsApp et Formspree -->
 <script>
-  const form = document.getElementById('orderForm');
-  const confirmation = document.getElementById('confirmation');
+const form = document.getElementById("orderForm");
+const confirmation = document.getElementById("confirmation");
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    const nom = document.getElementById('nom').value.trim();
-    const telClient = document.getElementById('telephone').value.trim().replace(/\s+/g,'');
-    const produit = document.getElementById('produit').value;
-    const quantite = document.getElementById('quantite').value;
-    const adresse = document.getElementById('adresse').value.trim();
-    const instructions = document.getElementById('message').value.trim();
+  const nom = document.getElementById("nom").value.trim();
+  const telClient = document.getElementById("telephone").value.trim().replace(/\s+/g,"");
+  const produit = document.getElementById("produit").value.trim();
+  const quantite = document.getElementById("quantite").value.trim();
+  const adresse = document.getElementById("adresse").value.trim();
+  const instructions = document.getElementById("message").value.trim();
 
-    // Message pour l'admin (toi)
-    const messageAdmin = `🥜 *Nouvelle commande Peanut Artisan Butter* 🥜\n\n` +
-                         `👤 Nom: ${nom}\n` +
-                         `📞 Tel client: ${telClient}\n` +
-                         `📦 Produit: ${produit} x${quantite}\n` +
-                         `🏠 Adresse: ${adresse}\n` +
-                         `${instructions ? "📝 Instructions: " + instructions + "\n" : ""}` +
-                         `📨 Merci de confirmer rapidement !`;
+  // Message pour toi (WhatsApp)
+  const messageAdmin = `Nouvelle commande 🥜%0A` +
+                       `👤 Nom: ${nom}%0A` +
+                       `📞 Tel: ${telClient}%0A` +
+                       `📦 Produit: ${produit}%0A` +
+                       `🔢 Quantité: ${quantite}%0A` +
+                       `🏠 Adresse: ${adresse}%0A` +
+                       `${instructions ? "📝 Instructions: " + encodeURIComponent(instructions) : ""}`;
 
-    // Ouvre WhatsApp pour l'admin dans un nouvel onglet
-    const waAdmin = `https://wa.me/237693732041?text=${encodeURIComponent(messageAdmin)}`;
-    window.open(waAdmin, "_blank");
+  // Envoi WhatsApp au numéro du vendeur
+  window.open(`https://wa.me/237693732041?text=${messageAdmin}`, "_blank");
 
-    // Confirmation sur le site
-    confirmation.textContent = "✅ Merci ! La commande a été envoyée. Tu recevras une notification sur WhatsApp.";
+  // Message de confirmation pour le client
+  const messageClient = `Merci ${nom} 🙏%0A` +
+                        `Ta commande Peanut Artisan Butter a bien été enregistrée 🥜%0A` +
+                        `📦 Produit: ${produit} x${quantite}%0A` +
+                        `🏠 Livraison: ${adresse}%0A` +
+                        `${instructions ? "📝 Vos instructions: " + encodeURIComponent(instructions) : ""}%0A` +
+                        `🚚 Nous te contacterons bientôt !`;
 
-    // Soumettre le formulaire Formspree
-    form.submit();
-  });
+  // Envoi WhatsApp au client
+  const a = document.createElement("a");
+  a.href = `https://wa.me/${telClient}?text=${messageClient}`;
+  a.target = "_blank";
+  a.click();
+
+  // Envoyer via Formspree
+  form.submit();
+
+  // Confirmation
+  confirmation.textContent = "✅ Merci ! Votre commande a été envoyée et WhatsApp est prêt pour confirmation.";
+});
 </script>
 
 </body>
