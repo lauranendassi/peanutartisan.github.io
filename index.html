@@ -128,40 +128,36 @@
 
 <script>
   const form = document.getElementById('orderForm');
-  const whatsappButton = document.getElementById('whatsappButton');
   const confirmation = document.getElementById('confirmation');
 
-  whatsappButton.addEventListener('click', () => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
     const nom = document.getElementById('nom').value.trim();
-    const tel = document.getElementById('telephone').value.trim().replace(/\s+/g,'');
+    const telClient = document.getElementById('telephone').value.trim().replace(/\s+/g,'');
     const produit = document.getElementById('produit').value;
     const quantite = document.getElementById('quantite').value;
     const adresse = document.getElementById('adresse').value.trim();
-    const messageExtra = document.getElementById('message').value.trim();
+    const instructions = document.getElementById('message').value.trim();
 
-    if(!nom || !tel || !produit || !quantite || !adresse) {
-      confirmation.textContent = "❌ Veuillez remplir tous les champs avant d'envoyer sur WhatsApp.";
-      return;
-    }
+    // Message pour l'admin (toi)
+    const messageAdmin = `🥜 *Nouvelle commande Peanut Artisan Butter* 🥜\n\n` +
+                         `👤 Nom: ${nom}\n` +
+                         `📞 Tel client: ${telClient}\n` +
+                         `📦 Produit: ${produit} x${quantite}\n` +
+                         `🏠 Adresse: ${adresse}\n` +
+                         `${instructions ? "📝 Instructions: " + instructions + "\n" : ""}` +
+                         `📨 Merci de confirmer rapidement !`;
 
-    // Message WhatsApp professionnel avec emojis
-    const messageClient = `🥜 *Peanut Artisan Butter* 🥜\n\n` +
-                          `Bonjour *${nom}* 🙏,\n\n` +
-                          `Votre commande a bien été reçue ✅\n` +
-                          `📦 Produit: *${produit}* x${quantite}\n` +
-                          `🏠 Livraison: *${adresse}*\n` +
-                          `${messageExtra ? "📝 Instructions: " + messageExtra + "\n" : ""}` +
-                          `🚚 Nous vous contacterons bientôt pour confirmer la livraison !\n\n` +
-                          `Merci pour votre confiance 💛`;
+    // Ouvre WhatsApp pour l'admin dans un nouvel onglet
+    const waAdmin = `https://wa.me/237693732041?text=${encodeURIComponent(messageAdmin)}`;
+    window.open(waAdmin, "_blank");
 
-    const waLink = `https://wa.me/${tel}?text=${encodeURIComponent(messageClient)}`;
-    window.open(waLink, "_blank");
+    // Confirmation sur le site
+    confirmation.textContent = "✅ Merci ! La commande a été envoyée. Tu recevras une notification sur WhatsApp.";
 
-    confirmation.textContent = "✅ WhatsApp prêt à envoyer au client !";
-  });
-
-  form.addEventListener('submit', (e) => {
-    confirmation.textContent = "✅ Votre commande a été envoyée via Formspree.";
+    // Soumettre le formulaire Formspree
+    form.submit();
   });
 </script>
 
