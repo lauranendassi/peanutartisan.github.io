@@ -8,58 +8,62 @@
 <style>
 /* --- Reset & Global --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Roboto', sans-serif; background: #faf6f0; color: #333; line-height: 1.6; }
+body { font-family: 'Roboto', sans-serif; background: #faf6f0; color: #333; line-height: 1.6; scroll-behavior: smooth; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; object-fit: cover; }
 
 /* --- Header / Navbar --- */
-header { background: #8B5E3C; color: #fff; position: sticky; top: 0; z-index: 100; }
+header { background: #8B5E3C; color: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 15px 20px; }
 header h1 { font-size: 1.8rem; }
-nav { display: flex; gap: 15px; }
+nav { display: flex; gap: 20px; }
 nav a { font-weight: bold; transition: 0.3s; }
 nav a:hover { color: #ffd700; }
 
-/* Hamburger menu for mobile */
-.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+/* Hamburger menu */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
 .hamburger div { width: 25px; height: 3px; background: #fff; transition: 0.3s; }
-nav.mobile { display: none; flex-direction: column; background: #8B5E3C; position: absolute; top: 60px; right: 0; width: 200px; border-radius: 0 0 0 10px; padding: 10px; }
+nav.mobile { display: none; flex-direction: column; background: #8B5E3C; position: absolute; top: 65px; right: 10px; width: 200px; border-radius: 0 0 10px 10px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+nav.mobile a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+nav.mobile a:last-child { border-bottom: none; }
 
 /* --- Hero Section --- */
-.hero { background: url('https://images.unsplash.com/photo-1590080872809-32b7c0c6a5f5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; height: 80vh; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 0 20px; }
-.hero h2 { font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
-.hero p { font-size: 1.2rem; max-width: 600px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
-.btn { background: #ffd700; color: #8B5E3C; padding: 12px 25px; font-weight: bold; border-radius: 5px; transition: 0.3s; display: inline-block; margin-top: 20px; }
-.btn:hover { background: #e6c200; }
+.hero { background: url('https://images.unsplash.com/photo-1590080872809-32b7c0c6a5f5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; height: 80vh; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; position: relative; padding: 0 20px; }
+.hero::before { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.35); }
+.hero div { position: relative; z-index: 1; }
+.hero h2 { font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.hero p { font-size: 1.2rem; max-width: 600px; margin: auto; text-shadow: 1px 1px 4px rgba(0,0,0,0.6); }
+.btn { background: #ffd700; color: #8B5E3C; padding: 14px 30px; font-weight: bold; border-radius: 8px; transition: 0.3s; display: inline-block; margin-top: 20px; }
+.btn:hover { background: #e6c200; transform: translateY(-2px); }
 
 /* --- Section titles --- */
 section { padding: 60px 20px; max-width: 1200px; margin: auto; }
-section h2 { color: #8B5E3C; font-size: 2rem; margin-bottom: 20px; border-bottom: 3px solid #8B5E3C; display: inline-block; padding-bottom: 5px; }
+section h2 { color: #8B5E3C; font-size: 2rem; margin-bottom: 30px; border-bottom: 3px solid #8B5E3C; display: inline-block; padding-bottom: 5px; }
 
 /* --- Products Gallery --- */
-.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.product-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.product-card:hover { transform: scale(1.05); }
-.product-card img { width: 100%; height: 200px; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
 .product-card .info { padding: 15px; text-align: center; }
-.product-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
-.product-card p { font-weight: bold; color: #8B5E3C; }
+.product-card h3 { margin-bottom: 10px; font-size: 1.3rem; }
+.product-card p { font-weight: bold; color: #8B5E3C; font-size: 1.1rem; }
 
 /* --- About Section --- */
 .about { display: flex; gap: 40px; flex-wrap: wrap; align-items: center; }
-.about img { flex: 1; border-radius: 15px; max-width: 500px; height: auto; }
-.about .text { flex: 1; }
+.about img { flex: 1; border-radius: 15px; max-width: 500px; height: auto; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.about .text { flex: 1; font-size: 1rem; }
 
 /* --- Order Form --- */
-.contact form, .order-form { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+.contact form, .order-form { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
 form label { display: block; margin-top: 15px; font-weight: bold; }
-form input, form select, form textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
-form button { margin-top: 20px; width: 100%; background: #8B5E3C; color: #fff; padding: 15px; font-weight: bold; border-radius: 5px; cursor: pointer; }
-form button:hover { background: #6A4228; }
+form input, form select, form textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; }
+form button { margin-top: 20px; width: 100%; background: #8B5E3C; color: #fff; padding: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+form button:hover { background: #6A4228; transform: translateY(-2px); }
 #confirmation { margin-top: 15px; font-weight: bold; color: green; text-align: center; }
 
 /* --- Footer --- */
-footer { background: #333; color: #fff; text-align: center; padding: 20px; }
+footer { background: #333; color: #fff; text-align: center; padding: 25px; font-size: 0.9rem; }
 
 /* --- Responsive --- */
 @media (max-width: 900px) {
@@ -69,7 +73,6 @@ footer { background: #333; color: #fff; text-align: center; padding: 20px; }
   .hamburger { display: flex; }
   nav.mobile { display: none; }
 }
-
 </style>
 </head>
 <body>
@@ -186,7 +189,6 @@ footer { background: #333; color: #fff; text-align: center; padding: 20px; }
 <script>
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
-
 hamburger.addEventListener("click", () => {
   mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
 });
@@ -194,7 +196,6 @@ hamburger.addEventListener("click", () => {
 // WhatsApp Form
 const form = document.getElementById("orderForm");
 const confirmation = document.getElementById("confirmation");
-
 form.addEventListener("submit", function(e) {
   e.preventDefault();
   const nom = document.getElementById("nom").value.trim();
@@ -219,7 +220,6 @@ form.addEventListener("submit", function(e) {
                         `🏠 Livraison: ${adresse}%0A` +
                         `${instructions ? "📝 Vos instructions: " + encodeURIComponent(instructions) : ""}%0A` +
                         `🚚 Nous te contacterons bientôt !`;
-
   const a = document.createElement("a");
   a.href = `https://wa.me/${telClient}?text=${messageClient}`;
   a.target = "_blank";
@@ -229,5 +229,6 @@ form.addEventListener("submit", function(e) {
   confirmation.textContent = "✅ Merci ! Votre commande a été envoyée et WhatsApp est prêt pour confirmation.";
 });
 </script>
+
 </body>
 </html>
