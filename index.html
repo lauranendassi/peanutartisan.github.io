@@ -77,6 +77,11 @@ form input, form select, form textarea { width: 100%; padding: 12px; margin-top:
 form button { margin-top: 20px; width: 100%; background: #D2691E; color: #fff; padding: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 1rem; }
 form button:hover { background: #a64b1a; transform: translateY(-2px); }
 #total { font-weight: bold; color: #D2691E; margin-top: 10px; }
+/* QR Section */
+    .qr { text-align: center; margin-top: 30px; }
+    .qr img { border: 4px solid #8B5E3C; border-radius: 8px; padding: 5px; }
+
+    footer { background: #333; color: white; text-align: center; padding: 15px; margin-top: 40px; }
 
 /* --- Footer --- */
 footer { background: #333; color: #fff; text-align: center; padding: 25px; font-size: 0.9rem; }
@@ -192,7 +197,12 @@ footer { background: #333; color: #fff; text-align: center; padding: 25px; font-
   <h2>Contactez-nous</h2>
   <p style="text-align:center;">📞 WhatsApp : +237 693732041 | 📧 Email : contact@peanutartisan.cm</p>
 </section>
-
+<section class="qr">
+    <h2>📲 Scannez pour commander</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lauranendassi.github.io/peanutartisan.github.io/" alt="QR Code Peanut Artisan">
+    <p>Scannez ce QR code pour accéder au site et passer commande.</p>
+</section>
+  
 <!-- Footer -->
 <footer>
   <p>© 2025 Peanut Artisan Butter – Tous droits réservés</p>
